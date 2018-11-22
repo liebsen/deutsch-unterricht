@@ -1,0 +1,23 @@
+{
+  "name": "deutsche-rss",
+  "version": "1.0.0",
+  "description": "An Overlemon project",
+  "author": "martin_frith <overlemonsoft@gmail.com>",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "feed-reader": "^1.1.6",
+    "feed-watcher": "^0.2.1"
+  },
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
