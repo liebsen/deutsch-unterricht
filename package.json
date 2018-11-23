@@ -8,8 +8,14 @@
     "start": "node server"
   },
   "dependencies": {
+    "bulma": "^0.7.2",
+    "express": "^4.16.4",
     "feed-reader": "^1.1.6",
-    "feed-watcher": "^0.2.1"
+    "feed-watcher": "^0.2.1",
+    "lodash": "^4.17.11",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.10",
+    "vue": "^2.5.17"
   },
   "engines": {
     "node": ">= 4.0.0",
