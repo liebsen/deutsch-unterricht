@@ -13,17 +13,19 @@ var Watcher  = require('feed-watcher'),
 // if not interval is passed, 60s would be set as default interval.
 var watcher = new Watcher(feed, interval)
 
-// Check for new entries every n seconds.
-watcher.on('new entries', (entries) => {
+var updateNews = (entries) => {
   entries.forEach((entry) => {
     try {
-      db.collection('news').updateOne({title:entry.title},{$set:entry},{upsert:true})
+      db.collection('news').updateOne({title:entry.title},{$set:{title:entry.title, description:entry.description,date:entry.date }},{upsert:true})
     } catch (e) {
       console.log(e);
     }
   })      
+}
+// Check for new entries every n seconds.
+watcher.on('new entries', (entries) => {
+  updateNews(entries)
 })
-
 
 // routes
 MongoClient.connect(process.env.mongourl,(err,database) => {
@@ -35,13 +37,7 @@ MongoClient.connect(process.env.mongourl,(err,database) => {
   watcher
     .start()
     .then((entries) => {
-      entries.forEach((entry) => {
-        try {
-          db.collection('news').updateOne({title:entry.title},{$set:entry},{upsert:true})
-        } catch (e) {
-          console.log(e);
-        }
-      })      
+      updateNews(entries)
     })
     .catch((error) => {
       console.error(error)
